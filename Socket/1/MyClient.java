@@ -6,7 +6,10 @@ public class MyClient {
         try{
             Socket s = new Socket("localhost",6666);
             DataOutputStream dout = new DataOutputStream(s.getOutputStream());
-            dout.writeUTF("Hello World");
+            String str;
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            str = br.readLine();
+            dout.writeUTF(str);
             dout.flush();
             dout.close();
             s.close();
