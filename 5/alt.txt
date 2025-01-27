@@ -1,0 +1,108 @@
+Here's a simple implementation of an **unrestricted simplex protocol** in Java. In this program, the **Sender** sends data to the **Receiver** without expecting any acknowledgment or error handling.
+
+### **Unrestricted Simplex Protocol in Java**
+
+#### **1. Sender.java**
+```java
+public class Sender {
+    private Receiver receiver;
+
+    public Sender(Receiver receiver) {
+        this.receiver = receiver;
+    }
+
+    public void sendPacket(String data) {
+        // Create a packet (data only, no header or checksum)
+        Packet packet = new Packet(data);
+        // Send packet to receiver
+        receiver.receive(packet);
+    }
+
+    public static void main(String[] args) {
+        // Initialize the Receiver and Sender
+        Receiver receiver = new Receiver();
+        Sender sender = new Sender(receiver);
+
+        // Example data to be sent
+        String data = "Hello, world!";
+
+        // Simulate sending packets continuously
+        for (int i = 0; i < 5; i++) {
+            sender.sendPacket(data);  // Send the packet
+            try {
+                Thread.sleep(1000);  // Pause to simulate time between transmissions
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+```
+
+#### **2. Receiver.java**
+```java
+public class Receiver {
+
+    public void receive(Packet packet) {
+        // Process the received data (no error handling)
+        processData(packet.getData());
+    }
+
+    private void processData(String data) {
+        System.out.println("Received data: " + data);
+    }
+}
+```
+
+#### **3. Packet.java**
+```java
+public class Packet {
+    private String data;
+
+    public Packet(String data) {
+        this.data = data;
+    }
+
+    public String getData() {
+        return data;
+    }
+}
+```
+
+### **Explanation:**
+
+1. **Sender.java:**
+   - The `Sender` class creates a packet containing only the data and sends it to the `Receiver`.
+   - The `sendPacket` method simulates sending the data to the receiver, and the `main` method sends the data multiple times.
+   
+2. **Receiver.java:**
+   - The `Receiver` class simply receives the packet and prints the data. No checksum validation or acknowledgment is done, making it "unrestricted" and simplex (one-way communication).
+
+3. **Packet.java:**
+   - The `Packet` class holds the data that is being sent from the sender to the receiver.
+
+### **How to Run:**
+
+1. Save the files:
+   - `Sender.java`
+   - `Receiver.java`
+   - `Packet.java`
+
+2. Compile and run the program:
+
+   ```bash
+   javac Sender.java Receiver.java Packet.java
+   java Sender
+   ```
+
+### **Output:**
+```
+Received data: Hello, world!
+Received data: Hello, world!
+Received data: Hello, world!
+Received data: Hello, world!
+Received data: Hello, world!
+```
+
+### **Summary:**
+This is a simple implementation of an unrestricted simplex protocol. The `Sender` sends data to the `Receiver` without error checking, acknowledgment, or flow control. The `Receiver` just processes and prints the data.
