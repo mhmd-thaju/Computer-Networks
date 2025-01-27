@@ -227,3 +227,58 @@ public class Packet {
 - **Packet:** A simple data structure to hold the packet's header, data, and checksum.
 
 This is a simple example of a simplex communication protocol in Java where data flows in one direction, and the receiver does basic checksum validation.
+
+
+
+
+
+Procedure
+
+### **Procedure for the Unrestricted Simplex Protocol Program:**
+
+1. **Create Classes:**
+   - **Sender Class:** Defines the sender which will create and send packets of data.
+   - **Receiver Class:** Defines the receiver which will receive and process the data sent by the sender.
+   - **Packet Class:** Defines the packet structure, which holds the data being sent.
+
+2. **Set Up Sender and Receiver:**
+   - Create a `Receiver` object to receive the data.
+   - Create a `Sender` object, passing the `Receiver` object as a parameter so the sender knows where to send data.
+
+3. **Define Data:**
+   - In the `Sender` class, define a sample data string (e.g., "Hello, world!").
+
+4. **Send Data in a Loop:**
+   - Use the `Sender` object to send the data multiple times (for example, 5 times) using the `sendPacket` method.
+   - Each time the `sendPacket` method is called, a `Packet` object is created with the data and sent to the `Receiver`.
+
+5. **Receiver Processes Data:**
+   - The `Receiver` simply receives the `Packet`, extracts the data, and prints it to the console.
+   - There is no checksum, acknowledgment, or error handling — the communication is one-way and unrestricted.
+
+6. **Introduce Delay Between Sends:**
+   - Use `Thread.sleep(1000)` to simulate a 1-second delay between sending each packet.
+
+### **Procedure Steps:**
+1. **Initialize Receiver and Sender Objects:**
+   - Create an instance of `Receiver` and pass it to the `Sender` constructor.
+
+2. **Simulate Data Transmission:**
+   - In a loop, repeatedly call the `sendPacket` method of the `Sender` to send the data.
+
+3. **Receive and Process Data:**
+   - When the `Receiver` receives a packet, it processes the data by simply printing it to the console.
+
+4. **Output Results:**
+   - Observe the receiver printing the received data multiple times, as the sender continuously sends the same packet.
+
+### **Expected Output:**
+```
+Received data: Hello, world!
+Received data: Hello, world!
+Received data: Hello, world!
+Received data: Hello, world!
+Received data: Hello, world!
+```
+
+This procedure outlines the steps to implement and test the unrestricted simplex protocol, where the sender continuously transmits data to the receiver without any acknowledgment or error handling.
