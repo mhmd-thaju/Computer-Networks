@@ -1,3 +1,4 @@
+package Onebit;
 import java.util.Random;
 
 class  Onebit{

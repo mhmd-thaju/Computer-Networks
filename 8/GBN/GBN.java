@@ -1,3 +1,4 @@
+package GBN;
 import java.util.Scanner;
 public class GBN {
     public static void main(String[] args){
